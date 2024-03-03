@@ -6,7 +6,7 @@ macro_rules! define_request {
         Request => { $($req_def:tt)* };
         Response => { $($resp_def:tt)* };
     ) => {
-        crate::define_request! {
+        $crate::define_request! {
             Name => $name;
             Method => $method;
             Payload => true;
@@ -33,7 +33,7 @@ macro_rules! define_request {
                 $($resp_def)*
             }
 
-            impl crate::models::Request for [<$name Request>] {
+            impl $crate::models::Request for [<$name Request>] {
                 const METHOD: &'static str = $method;
                 const HAS_PAYLOAD: bool = $has_payload;
                 type Response = [<$name Response>];
@@ -47,7 +47,7 @@ macro_rules! define_request {
         Request => { $($req_def:tt)* };
         Response => $resp_ty: ty;
     ) => {
-        crate::define_request! {
+        $crate::define_request! {
             Name => $name;
             Method => $method;
             Payload => true;
@@ -69,7 +69,7 @@ macro_rules! define_request {
                 $($req_def)*
             }
 
-            impl crate::models::Request for [<$name Request>] {
+            impl $crate::models::Request for [<$name Request>] {
                 const METHOD: &'static str = $method;
                 const HAS_PAYLOAD: bool = $has_payload;
                 type Response = $resp_ty;

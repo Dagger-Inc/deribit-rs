@@ -1,19 +1,14 @@
 use crate::models::Request;
 use serde::{Deserialize, Serialize};
 
-#[derive(Deserialize, Serialize, Debug, Clone)]
+#[derive(Deserialize, Serialize, Debug, Clone, Default)]
 #[serde(rename_all = "snake_case")]
 pub enum GrantType {
+    #[default]
     Password,
     ClientCredentials,
     ClientSignature,
     RefreshToken,
-}
-
-impl Default for GrantType {
-    fn default() -> GrantType {
-        GrantType::Password
-    }
 }
 
 #[derive(Deserialize, Serialize, Debug, Clone, Default)]

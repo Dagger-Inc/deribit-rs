@@ -35,9 +35,9 @@ impl DeribitAPIClient {
         timeout: Duration,
     ) -> DeribitAPIClient {
         DeribitAPIClient {
-            wstx: wstx,
-            waiter_tx: waiter_tx,
-            timeout: timeout,
+            wstx,
+            waiter_tx,
+            timeout,
             id: 0,
         }
     }
@@ -99,7 +99,7 @@ where
             Poll::Ready(Ok(ret)) => Poll::Ready(match ret {
                 Ok(resp) => {
                     let result: StdResult<JSONRPCResponse<R>, _> = from_str(&resp);
-                    if let Err(_) = result.as_ref() {
+                    if result.as_ref().is_err() {
                         error!("[API Client] Cannot deserialize RPC response: {}", resp);
                     }
                     result.map_err(Into::into)
@@ -121,7 +121,7 @@ pub struct DeribitAPICallResult<R> {
 
 impl<R> DeribitAPICallResult<R> {
     pub(crate) fn new(inner: DeribitAPICallRawResult<R>) -> Self {
-        DeribitAPICallResult { inner: inner }
+        DeribitAPICallResult { inner }
     }
 }
 
