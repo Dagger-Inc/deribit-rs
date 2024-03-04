@@ -35,6 +35,7 @@ url = "2"
 
 [dev-dependencies]
 env_logger = "0.10"
+dotenv = "0.15"
 
 [dev-dependencies.tokio]
 features = ["time", "macros", "rt-multi-thread", "net"]
