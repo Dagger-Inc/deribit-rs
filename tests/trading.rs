@@ -26,7 +26,7 @@ fn get_order_state() {
         let _ = client.call(req).await?.await?;
 
         let req = GetOrderStateRequest::new("5703080407");
-        Ok::<_, Error>(client.call(req).await?.await?)
+        Ok::<_, Error>(client.call(req).await?.await)
     };
     let _ = rt.block_on(fut)?;
 }
@@ -116,7 +116,7 @@ fn buy_and_cancel_by_label() {
         let mut req = BuyRequest::limit("BTC-PERPETUAL", 1000., 10.);
         req.label = Some("happy".to_string());
 
-        client.call(req).await?.await?.0.order.order_id;
+        client.call(req).await?.await?; //.0.order.order_id;
 
         client
             .call(CancelByLabelRequest::new("happy"))

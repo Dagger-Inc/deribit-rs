@@ -22,7 +22,7 @@ fn get_transfers() {
         let _ = client.call(req).await?.await?;
 
         let req = GetTransfersRequest::with_currency(Currency::BTC);
-        Ok::<_, Error>(client.call(req).await?.await?)
+        Ok::<_, Error>(client.call(req).await?.await)
     };
     let _ = rt.block_on(fut)?;
 }

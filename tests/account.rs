@@ -40,7 +40,7 @@ fn get_account_summary() {
         let req = AuthRequest::credential_auth(&key, &secret);
         let _ = client.call(req).await?.await?;
         let req = GetAccountSummaryRequest::extended(Currency::BTC);
-        Ok::<_, Error>(client.call(req).await?.await?)
+        Ok::<_, Error>(client.call(req).await?.await)
     };
     let resp = rt.block_on(fut);
     if let Err(err) = resp {
@@ -64,7 +64,7 @@ fn get_subaccounts() {
         let _ = client.call(req).await?.await?;
 
         let req = GetSubaccountsRequest::with_portfolio();
-        Ok::<_, Error>(client.call(req).await?.await?)
+        Ok::<_, Error>(client.call(req).await?.await)
     };
     let resp = rt.block_on(fut);
     if let Err(err) = resp {

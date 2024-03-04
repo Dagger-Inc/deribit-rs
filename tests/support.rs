@@ -54,7 +54,7 @@ fn test() {
         let req = TestRequest {
             expected_result: Some("exception".into()),
         };
-        Ok::<_, Error>(client.call(req).await?.await?)
+        Ok::<_, Error>(client.call(req).await?.await)
     };
     assert!(rt.block_on(fut).is_err());
 }
