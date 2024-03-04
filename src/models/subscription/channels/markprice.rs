@@ -27,7 +27,7 @@ impl<'de> Deserialize<'de> for MarkPriceOptionChannel {
         D: Deserializer<'de>,
     {
         let s = <&str as Deserialize<'de>>::deserialize(deserializer)?;
-        let segments: Vec<_> = s.split(".").collect();
+        let segments: Vec<_> = s.split('.').collect();
         match segments.as_slice() {
             ["markprice", "options", index_name] => {
                 Ok(MarkPriceOptionChannel(index_name.to_string()))

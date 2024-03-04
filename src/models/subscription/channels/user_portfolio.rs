@@ -45,7 +45,7 @@ impl<'de> Deserialize<'de> for UserPortfolioChannel {
         D: Deserializer<'de>,
     {
         let s = <&str as Deserialize<'de>>::deserialize(deserializer)?;
-        let segments: Vec<_> = s.split(".").collect();
+        let segments: Vec<_> = s.split('.').collect();
         match segments.as_slice() {
             ["user", "portfolio", currency] => Ok(UserPortfolioChannel(currency.to_string())),
             _ => throw!(D::Error::invalid_value(

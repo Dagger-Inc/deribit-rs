@@ -42,7 +42,7 @@ impl<'de> Deserialize<'de> for TradesChannel {
         D: Deserializer<'de>,
     {
         let s = <&str as Deserialize<'de>>::deserialize(deserializer)?;
-        let segments: Vec<_> = s.split(".").collect();
+        let segments: Vec<_> = s.split('.').collect();
         match segments.as_slice() {
             ["trades", instrument_name, interval] => Ok(TradesChannel::ByInstrument {
                 instrument_name: instrument_name.to_string(),

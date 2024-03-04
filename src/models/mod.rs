@@ -65,9 +65,12 @@ pub trait Request {
     }
 }
 
-#[derive(Deserialize, Serialize, Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(
+    Deserialize, Serialize, Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord, Default,
+)]
 pub enum Currency {
     #[serde(alias = "btc")]
+    #[default]
     BTC,
     #[serde(alias = "eth")]
     ETH,
@@ -75,12 +78,6 @@ pub enum Currency {
     USD,
     #[serde(alias = "usdt")]
     USDT,
-}
-
-impl Default for Currency {
-    fn default() -> Currency {
-        Currency::BTC
-    }
 }
 
 impl std::fmt::Display for Currency {
@@ -162,20 +159,15 @@ pub enum LiquidationType {
     MakerTaker,
 }
 
-#[derive(Deserialize, Serialize, Debug, Clone, Copy, PartialEq)]
+#[derive(Deserialize, Serialize, Debug, Clone, Copy, PartialEq, Default)]
 #[serde(rename_all = "snake_case")]
 pub enum OrderType {
+    #[default]
     Limit,
     Market,
     StopLimit,
     StopMarket,
     Liquidation,
-}
-
-impl Default for OrderType {
-    fn default() -> Self {
-        OrderType::Limit
-    }
 }
 
 #[derive(Deserialize, Serialize, Debug, Clone, Copy, PartialEq)]
@@ -197,18 +189,13 @@ pub enum OrderBookState {
     Closed,
 }
 
-#[derive(Deserialize, Serialize, Debug, Clone, Copy, PartialEq)]
+#[derive(Deserialize, Serialize, Debug, Clone, Copy, PartialEq, Default)]
 #[serde(rename_all = "snake_case")]
 pub enum TimeInForce {
+    #[default]
     GoodTilCancelled,
     FillOrKill,
     ImmediateOrCancel,
-}
-
-impl Default for TimeInForce {
-    fn default() -> Self {
-        TimeInForce::GoodTilCancelled
-    }
 }
 
 #[derive(Deserialize, Serialize, Debug, Clone, Copy, PartialEq)]

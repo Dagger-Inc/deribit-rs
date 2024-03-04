@@ -19,7 +19,7 @@ impl<'de> Deserialize<'de> for DeribitPriceIndexChannel {
         D: Deserializer<'de>,
     {
         let s = <&str as Deserialize<'de>>::deserialize(deserializer)?;
-        let segments: Vec<_> = s.split(".").collect();
+        let segments: Vec<_> = s.split('.').collect();
         match segments.as_slice() {
             ["deribit_price_index", index_name] => {
                 Ok(DeribitPriceIndexChannel(index_name.to_string()))

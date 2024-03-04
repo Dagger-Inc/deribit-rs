@@ -22,7 +22,7 @@ impl<'de> Deserialize<'de> for QuoteChannel {
         D: Deserializer<'de>,
     {
         let s = <&str as Deserialize<'de>>::deserialize(deserializer)?;
-        let segments: Vec<_> = s.split(".").collect();
+        let segments: Vec<_> = s.split('.').collect();
         match segments.as_slice() {
             ["quote", instrument_name] => Ok(QuoteChannel(instrument_name.to_string())),
             _ => throw!(D::Error::invalid_value(

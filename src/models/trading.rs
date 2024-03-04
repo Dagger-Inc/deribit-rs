@@ -84,8 +84,8 @@ impl EditRequest {
     pub fn new(order_id: &str, price: f64, amount: f64) -> Self {
         Self {
             order_id: order_id.to_string(),
-            amount: amount,
-            price: price,
+            amount,
+            price,
             post_only: None,
             reduce_only: None,
             reject_post_only: None,
@@ -134,7 +134,7 @@ impl TradeRequest {
     {
         TradeRequest {
             instrument_name: instrument_name.into(),
-            amount: amount,
+            amount,
             r#type: OrderType::Market,
             label: None,
             price: None,
@@ -154,7 +154,7 @@ impl TradeRequest {
     {
         TradeRequest {
             instrument_name: instrument_name.into(),
-            amount: amount,
+            amount,
             r#type: OrderType::Limit,
             label: None,
             price: Some(price),
@@ -174,7 +174,7 @@ impl TradeRequest {
     {
         TradeRequest {
             instrument_name: instrument_name.into(),
-            amount: amount,
+            amount,
             r#type: OrderType::StopMarket,
             label: None,
             price: None,
@@ -199,7 +199,7 @@ impl TradeRequest {
     {
         TradeRequest {
             instrument_name: instrument_name.into(),
-            amount: amount,
+            amount,
             r#type: OrderType::StopLimit,
             label: None,
             price: Some(price),
@@ -281,18 +281,13 @@ where
     Ok(p.right())
 }
 
-#[derive(Deserialize, Serialize, Debug, Clone, Copy)]
+#[derive(Deserialize, Serialize, Debug, Clone, Copy, Default)]
 #[serde(rename_all = "snake_case")]
 pub enum CancelOrderType {
+    #[default]
     All,
     Limit,
     Stop,
-}
-
-impl Default for CancelOrderType {
-    fn default() -> Self {
-        CancelOrderType::All
-    }
 }
 
 #[derive(Deserialize, Serialize, Clone, Debug)]
@@ -396,20 +391,15 @@ impl Request for GetOrderStateRequest {
     type Response = GetOrderStateResponse;
 }
 
-#[derive(Deserialize, Serialize, Debug, Clone, Copy)]
+#[derive(Deserialize, Serialize, Debug, Clone, Copy, Default)]
 #[serde(rename_all = "snake_case")]
 pub enum GetOpenOrderType {
+    #[default]
     All,
     Limit,
     StopAll,
     StopLimit,
     StopMarket,
-}
-
-impl Default for GetOpenOrderType {
-    fn default() -> Self {
-        GetOpenOrderType::All
-    }
 }
 
 #[derive(Deserialize, Serialize, Debug, Clone, Default)]

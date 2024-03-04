@@ -27,7 +27,7 @@ impl<'de> Deserialize<'de> for AnnouncementsChannel {
             Ok(AnnouncementsChannel)
         } else {
             throw!(D::Error::invalid_value(
-                Unexpected::Str(&s),
+                Unexpected::Str(s),
                 &"announcements"
             ))
         }

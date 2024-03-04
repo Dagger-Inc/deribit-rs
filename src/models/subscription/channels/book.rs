@@ -33,7 +33,7 @@ impl<'de> Deserialize<'de> for BookChannel {
         D: Deserializer<'de>,
     {
         let s = <&str as Deserialize<'de>>::deserialize(deserializer)?;
-        let segments: Vec<_> = s.split(".").collect();
+        let segments: Vec<_> = s.split('.').collect();
         match segments.as_slice() {
             ["book", instrument_name, interval] => Ok(BookChannel(
                 instrument_name.to_string(),
@@ -79,7 +79,7 @@ impl<'de> Deserialize<'de> for GroupedBookChannel {
         D: Deserializer<'de>,
     {
         let s = <&str as Deserialize<'de>>::deserialize(deserializer)?;
-        let segments: Vec<_> = s.split(".").collect();
+        let segments: Vec<_> = s.split('.').collect();
         match segments.as_slice() {
             ["book", instrument_name, group, depth, interval] => Ok(GroupedBookChannel(
                 instrument_name.to_string(),

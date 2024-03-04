@@ -64,7 +64,7 @@ impl<D: DeserializeOwned> Stream for DeribitSubscriptionLimitedClient<D> {
         match this.rx.poll_next(cx) {
             Poll::Ready(Some(v)) => {
                 let data = from_str::<SubscriptionMessage<D>>(&v).map_err(From::from);
-                if let Err(_) = data.as_ref() {
+                if data.as_ref().is_err() {
                     warn!(
                         "[Subscription Client] Cannot deserialize subscription message: {}",
                         v
