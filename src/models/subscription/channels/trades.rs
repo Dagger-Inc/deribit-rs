@@ -17,6 +17,7 @@ pub struct TradesData {
     pub iv: Option<f64>,
     pub liquidation: Option<LiquidationType>,
     pub price: f64,
+    pub mark_price: f64,
     pub tick_direction: u64,
     pub timestamp: u64,
     pub trade_id: String,
