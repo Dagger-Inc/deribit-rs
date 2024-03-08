@@ -121,7 +121,15 @@ impl Deribit {
                                 };
 
                                 if let Err(msg) = waiter.send(msg) {
-                                    info!("[Servo] Orphan response: {:?}", msg);
+                                    //info!("[Servo] Orphan response: {:?}", msg);
+                                    match serde_json::from_str::<serde_json::Value>(&msg) {
+                                        Ok(json_msg) => {
+                                            info!("[Servo] Orphan response: {}", json_msg);
+                                        },
+                                        Err(_) => {
+                                            info!("[Servo] Received Orphan response that is not valid JSON: {}", msg);
+                                        }
+                                    }
                                 }
                             } else {
                                 // is a subscription messasge
