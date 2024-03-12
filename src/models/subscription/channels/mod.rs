@@ -15,7 +15,9 @@ mod user_portfolio;
 mod user_trades;
 
 pub use announcements::{AnnouncementsChannel, AnnouncementsData};
-pub use book::{BookChannel, BookData, Delta, GroupedBookChannel, GroupedBookData, OrderBookDelta};
+pub use book::{
+    BookChannel, BookData, BookDataType, Delta, GroupedBookChannel, GroupedBookData, OrderBookDelta,
+};
 pub use deribit_price_index::{DeribitPriceIndexChannel, DeribitPriceIndexData};
 pub use deribit_price_ranking::{DeribitPriceRankingChannel, DeribitPriceRankingData};
 pub use estimated_expiration_price::{

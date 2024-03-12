@@ -2,7 +2,7 @@ mod channels;
 
 use crate::models::{jsonrpc::JSONRPCVersion, Request};
 pub use channels::{
-    AnnouncementsChannel, AnnouncementsData, BookChannel, BookData, Delta,
+    AnnouncementsChannel, AnnouncementsData, BookChannel, BookData, BookDataType, Delta,
     DeribitPriceIndexChannel, DeribitPriceIndexData, DeribitPriceRankingChannel,
     DeribitPriceRankingData, EstimatedExpirationPriceChannel, EstimatedExpirationPriceData, Greeks,
     GroupedBookChannel, GroupedBookData, InstrumentState, InstrumentStateChannel,

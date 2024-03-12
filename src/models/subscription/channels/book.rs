@@ -6,6 +6,13 @@ use serde::{
 
 #[derive(Deserialize, Serialize, Debug, Clone, Copy)]
 #[serde(rename_all = "lowercase")]
+pub enum BookDataType {
+    Change,
+    Snapshot,
+}
+
+#[derive(Deserialize, Serialize, Debug, Clone, Copy)]
+#[serde(rename_all = "lowercase")]
 pub enum Delta {
     New,
     Change,
@@ -23,6 +30,8 @@ pub struct BookData {
     pub instrument_name: String,
     pub prev_change_id: Option<i64>,
     pub timestamp: u64,
+    #[serde(rename = "type")]
+    pub data_type: BookDataType,
 }
 
 #[derive(Debug, Clone)]
