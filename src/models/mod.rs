@@ -106,6 +106,8 @@ pub enum AssetKind {
     Option,
     #[serde(alias = "option_combo")]
     OptionCombo,
+    #[serde(alias = "spot")]
+    Spot,
 }
 
 impl std::str::FromStr for AssetKind {
