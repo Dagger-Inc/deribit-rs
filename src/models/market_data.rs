@@ -144,7 +144,7 @@ pub struct GetInstrumentsResponse {
     pub min_trade_amount: f64,
     pub option_type: Option<String>,
     pub quote_currency: Option<Currency>,
-    pub settlement_period: String,
+    pub settlement_period: Option<String>,
     pub strike: Option<f64>,
     pub tick_size: f64,
 }
